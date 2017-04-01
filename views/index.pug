@@ -1,5 +1,6 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  script(src='/javascripts/facebook.js', type='text/javascript')
+  fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')
+  #status
