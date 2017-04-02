@@ -124,7 +124,7 @@ function getAllFriends(id) {
 
 
 function initializeDisplays() {
-    $('#facebookLogin').hide();
-    $('.started').show();
+    $('#facebookLogin').show();
+    $('.started').hide();
     $('#profile').hide();
 }

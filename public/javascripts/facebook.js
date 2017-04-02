@@ -12,14 +12,16 @@ var loggedIn = false;
       // Logged into your app and Facebook.
       testAPI();
       loggedIn = true;
-      var elements = document.getElementsByTagName("fb:login-button");
-      elements[0].style.visibility = false;
-      document.getElementById("nextID").style.visibility = true;
+      //var elements = document.getElementsByTagName("fb:login-button");
+      //elements[0].style.visibility = false;
+      //document.getElementById("nextID").style.visibility = true;
+
+      document.getElementsByClassName('.started')[0].style.visibility = true;
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-      document.getElementById("nextID").style.visibility =false;
+      //document.getElementById('status').innerHTML = 'Please log ' +
+      //  'into this app.';
+      //document.getElementById("nextID").style.visibility =false;
       
     }
   }
