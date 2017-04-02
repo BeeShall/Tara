@@ -184,6 +184,7 @@ router.post('/analyze', function (req, res, next) {
         if(y) test[i-1].name=y;
         checkVerb(test[i].name,++i, p);
       } else {
+        if (y) test[i-1].name=y;
 
         var categorizedVals = normalizeList(test);
 
