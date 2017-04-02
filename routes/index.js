@@ -62,8 +62,10 @@ function getSpellCheckedText(text, callBack) {
 
 function analyzeText(detect, callBack) {
   //var text = "Its a great Monday because I bought a really cool shirt with a really cool GUcci jacket";
-  var text = "it was great watching pyscho with friend. I loved being scared with them. I want this blue dress from Chanel so bad. I wish I was not poor. This pair of shoes from Kenneth Cole is the finest I have seen so far. This is the funniest thing ever. #meme I had an amazing time hiking the ramapo trails today. Thank you friends for coming along. Hiking ramapo trails again. I am very excited. Going to the rocky mountain hiking with my girlfriend."
-
+  //var text = "it was great watching pyscho with friend. I loved being scared with them. I want this blue dress from Chanel so bad. I wish I was not poor. This pair of shoes from Kenneth Cole is the finest I have seen so far. This is the funniest thing ever. #meme I had an amazing time hiking the ramapo trails today. Thank you friends for coming along. Hiking ramapo trails again. I am very excited. Going to the rocky mountain hiking with my girlfriend."
+//console.log(detect);
+  //detect = detect.join(" ");
+  var text = detect;
   getSpellCheckedText(text, function (returnText) {
     text = returnText;
     var text = getTokens(returnText).join(' ');
@@ -90,7 +92,8 @@ function analyzeText(detect, callBack) {
         tobeParsed = response.body[0]['result'][0];
         var arr = tobeParsed.split(/[\(|\)| ]+/);
         var neededVerb = [];
-
+        console.log("THis is the array after split")
+        console.log(arr);
         var all = [];
         var lastVerbIndex = -1;
 
@@ -115,6 +118,10 @@ function analyzeText(detect, callBack) {
               all[lastVerbIndex].addDescription(arr[i+1]);
             }
             else {
+              console.log("Adding verb activity " + arr[i+1]);
+              var ob = new activity(arr[i+1]);
+              all.push(ob);
+
               // Just ignore
             }
           }
@@ -160,9 +167,10 @@ router.get('/',function (req,res, next) {
 })
 
 /* GET home page. */
-router.get('/analyze', function (req, res, next) {
+router.post('/analyze', function (req, res, next) {
+  //console.log(req.body)
   
-  analyzeText("hello world", function (x) {
+  analyzeText(req.body.data, function (x) {
 
     // X is the tree
     var test = x;
@@ -176,6 +184,7 @@ router.get('/analyze', function (req, res, next) {
         if(y) test[i-1].name=y;
         checkVerb(test[i].name,++i, p);
       } else {
+        if (y) test[i-1].name=y;
 
         var categorizedVals = normalizeList(test);
 
