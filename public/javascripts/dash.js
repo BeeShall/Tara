@@ -25,9 +25,9 @@ $(document).ready(function() {
                 for (var i in allPosts) {
                     toSend.push(allPosts[i].message);
                 }
-
-                $.get('/analyze', {
-                    data: toSend
+                
+                $.post('/analyze', {
+                    data: toSend.join(" ")
                 },
                 function (data, success) {
                     if (success) {
