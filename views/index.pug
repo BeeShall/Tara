@@ -1,10 +1,26 @@
 extends layout
 
 block content
-  //script(src='/javascripts/facebook.js', type='text/javascript')
-  fb:login-button(scope='public_profile,email',class="fblogin", onlogin='checkLoginState();')
-  #status
+  h3 Hi! It's
+  h1 Tara
+  section#facebookLogin
+    fb:login-button(scope='public_profile,email',class="fblogin", onlogin='checkLoginState();')
+    //button.buttonStyle login
+  
+  section.started
+    p Are you excited?
+    button#nextID.buttonStyle Get Started!
 
-  button#nextID You can now begin!
+  section#profile
+    p Who is the lucky person receiving the gift?
 
-  ul#friendList
+    .ui-widget
+      input#searchID()
+      button.buttonStyle#goButton(type="button",data-toggle="modal", data-target="#myModal") Go!
+
+  #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    .modal-dialog(role='document')
+      .modal-content
+        h2 Looking at their facebook recently, I think ...
+        span#answer
+
