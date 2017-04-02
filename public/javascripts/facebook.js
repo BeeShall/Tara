@@ -1,3 +1,5 @@
+var loggedIn = false;
+
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -9,10 +11,16 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      loggedIn = true;
+      var elements = document.getElementsByTagName("fb:login-button");
+      elements[0].style.visibility = false;
+      document.getElementById("nextID").style.visibility = true;
     } else {
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
+      document.getElementById("nextID").style.visibility =false;
+      
     }
   }
 
@@ -27,7 +35,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '281982262238438',
+    appId      : '1304818889611450',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
