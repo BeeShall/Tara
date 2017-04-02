@@ -10,8 +10,11 @@ var nouns = ['NN','NNP','NNPS','NNS'];
 var shopCategory = ['buy', 'purchase', 'shop', 'redeem'];
 var watchCategory = ['watch', 'view', 'see', 'follow']
 var outdoorCategory = ['play', 'visit', 'travel', 'hike', 'trek', 'walk', 'run', 'climb', 'fly', 'ride', 'tour', 'trip', 'sail', 'bike']
-var eatCategory = ['eat', 'dine', ]
-var categories = ["shopper", "media/film geek", "Outdoory", "Meat lover or eat lover?"]
+var eatCategory = ['eat', 'dine']
+var categories = ["Really into shopping? Maybe hit the nearest mall?/n Or Amazon to the rescue!", 
+                    "Media/Film geek! Hit the nearest AMC or Netflix and Chill?", 
+                    "Hiking and aventure is the main goal of like? Aren't there trails or reservation nearby? Hit the Mt. Everest!",
+                     "Meat lover or eat lover? #foodPorn"]
 
 
 
@@ -202,7 +205,23 @@ router.post('/analyze', function (req, res, next) {
 
         // Test print
         console.log(JSON.stringify(categorizedVals));
-        res.send(categorizedVals);
+
+        categorizedVals.sort(function(a,b){
+          a.count > b.count;
+        })
+        
+        var result = [];
+        var max = categorizedVals[0].count;
+       for(i in categorizedVals){
+         if(categorizedVals[i].count < max) break;
+         var temp = categorizedVals[i].name
+         if( shopCategory.includes(temp)) result.push(categories[0])
+         else if( watchCategory.includes(temp)) result.push(categories[1])
+         else if( shopCategory.includes(temp)) result.push(categories[2])
+         else result.push(categories[3]);
+       }
+       console.log(result)
+        res.send(result);
 
         
       }

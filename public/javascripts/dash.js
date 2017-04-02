@@ -73,6 +73,8 @@ $(document).ready(function() {
                     data: values
                 },
                 function (data, success) {
+                    console.log("Success: " + success)
+                    console.log(data);
                     if (success) {
                         // start the modal here.
                         $('#answer').append("<p>" + data +"</p>")
