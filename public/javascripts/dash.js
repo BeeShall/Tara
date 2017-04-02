@@ -69,7 +69,7 @@ $(document).ready(function() {
         if (selectedItem) {
             values = findValues(selectedItem.id);
 
-            $.get('/analyze', {
+            $.post('/analyze', {
                     data: values
                 },
                 function (data, success) {

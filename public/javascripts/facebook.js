@@ -16,7 +16,8 @@ var loggedIn = false;
       //elements[0].style.visibility = false;
       //document.getElementById("nextID").style.visibility = true;
 
-      document.getElementsByClassName('started')[0].style.visibility = true;
+      document.getElementsByClassName('started')[0].style.display = "block";
+      document.getElementById('facebookLogin').style.display = "none";
     } else {
       // The person is not logged into your app or we are unable to tell.
       //document.getElementById('status').innerHTML = 'Please log ' +
