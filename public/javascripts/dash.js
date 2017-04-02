@@ -69,18 +69,6 @@ $(document).ready(function() {
         if (selectedItem) {
             values = findValues(selectedItem.id);
 
-            $.post('/analyze', {
-                    data: values
-                },
-                function (data, success) {
-                    console.log("Success: " + success)
-                    console.log(data);
-                    if (success) {
-                        // start the modal here.
-                        $('#answer').append("<p>" + data +"</p>")
-                        //return data;
-                    }
-                });
         }
     })
 
@@ -102,7 +90,19 @@ function findValues(id) {
                     toSend.push(allPosts[i].message);
                 }
 
-                return toSend;
+                
+            $.post('/analyze', {
+                    data: toSend.join(" ")
+                },
+                function (data, success) {
+                    console.log("Success: " + success)
+                    console.log(data);
+                    if (success) {
+                        // start the modal here.
+                        $('#answer').append("<p>" + data +"</p><br>")
+                        //return data;
+                    }
+                });
 
                 
             }
