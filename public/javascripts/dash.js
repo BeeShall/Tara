@@ -1,4 +1,4 @@
-var allFriends = [{label: "sujil", id:2093758937},{label:"Bishal", id:0823649635947}];
+var allFriends = [];
 var selectedItem;
 $(document).ready(function() {
     initializeDisplays();
@@ -115,8 +115,12 @@ function getAllFriends(id) {
 
         for (var i = 0; i < friends.length; i++){
             console.log(friends[i])
+            var fri = {
+                label: friends[i].name,
+                id: friends[i].id
+            }
             //$('#friendList').append("<li>"+friends[i].name+"</li>");
-            allFriends.push(friends[i]);
+            allFriends.push(fri);
             //$('#friendList').children().last().data("id", friends[i].id);
         }
     });
